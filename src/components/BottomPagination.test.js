@@ -1,54 +1,22 @@
 import React from 'react';
 import { cleanup, fireEvent, render, screen } from '@testing-library/react';
-// import userEvent from '@testing-library/user-event';
 import { Provider } from 'react-redux';
 import BottomPagination from './BottomPagination';
 import repositories from '../mocks/repositories';
 import store from '../store/index';
-// import { fetchNewPage } from '../store/actions/pagination';
-// import mockedStore from '../mocks/mockedStore';
-// import { pagination } from '../services/apiGitHub';
 
-// const initialState = {
-//   input: 'node',
-//   totalCount: 1084000,
-//   incompleteResults: false,
-//   sortBy: '',
-//   isSelected: false,
-//   results: repositories,
-// };
-
-// const store = mockedStore(initialState);
 const PAGINATION_ELEMENTS_COUNT = 9;
 
 beforeAll(() => {
-  localStorage.setItem('lastGitHubApiCallUrl', 'https://api.github.com/search/repositories?q=node&client_id=3ff6e9bf539fc9c40c0f&client_secret=85625306aebc569d0a939d712a6da69f76a73a5f');
+  localStorage.setItem('lastGitHubApiCallUrl', JSON.stringify('https://api.github.com/search/repositories?q=node&client_id=3ff6e9bf539fc9c40c0f&client_secret=85625306aebc569d0a939d712a6da69f76a73a5f'));
 });
 
-// beforeEach(() => {
-//   render(
-//     <Provider store={ store }>
-//       <BottomPagination />
-//     </Provider>,
-//   );
-// });
 afterEach(() => {
   jest.clearAllMocks();
   cleanup();
 });
 
-// const mockedFunction = jest.fn().mockImplementation(pagination);
-
-// const apiResponse = Promise.resolve({
-//   json: () => Promise.resolve(repositories),
-//   ok: true,
-// });
-
-// const mockedExchange = jest.spyOn(global, 'fetch')
-//   .mockImplementation(() => apiResponse);
-
 describe('BottomPagination component', () => {
-  // afterEach(() => jest.clearAllMocks());
   it('should renders', () => {
     render(
       <Provider store={ store }>
@@ -80,7 +48,6 @@ describe('BottomPagination component', () => {
 });
 
 describe('when click on links to pages', () => {
-  // afterEach(() => jest.clearAllMocks());
   it('should be able to click on link to page 5', () => {
     const apiResponse = Promise.resolve({
       json: () => Promise.resolve(repositories),
@@ -89,19 +56,18 @@ describe('when click on links to pages', () => {
 
     const mockedExchange = jest.spyOn(global, 'fetch')
       .mockImplementation(() => apiResponse);
-    // const goToPage = jest.fn();
 
     render(
       <Provider store={ store }>
         <BottomPagination goToPage={ mockedExchange } />
       </Provider>,
     );
+
     const pageFive = screen.getAllByText(/5/i);
     expect(pageFive.length).toBe(1);
     expect(pageFive[0]).toHaveClass('page-link');
 
     fireEvent.click(pageFive[0]);
-    // expect(mockedExchange).toBeCalled();
   });
 
   it('should be able to click on link to page 4', () => {

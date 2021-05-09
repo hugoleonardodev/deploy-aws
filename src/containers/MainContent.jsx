@@ -4,9 +4,8 @@ import { Container } from 'reactstrap';
 import { connect } from 'react-redux';
 import MainContentCard from '../components/MainContentCard';
 import ErrorModal from '../components/ErrorModal';
-// import BottomPagination from '../components/BottomPagination';
+import Welcome from '../components/Welcome';
 
-// const CARD_LIMIT = 3;
 const MainContent = ({ reposResults, issuesResults, totalRepos, isSelected,
   totalIssues, error }) => {
   if (error.length > 0) {
@@ -19,7 +18,7 @@ const MainContent = ({ reposResults, issuesResults, totalRepos, isSelected,
           ? `Repositories results: ${totalRepos}` : `Issues results ${totalIssues}`}
       </h2>
 
-      {reposResults.length < 1 ? (<div>Loading</div>) : (
+      {reposResults.length < 1 ? (<Welcome />) : (
         <Container className="themed-container">
           {isSelected ? reposResults.map((e, i) => (
             <MainContentCard

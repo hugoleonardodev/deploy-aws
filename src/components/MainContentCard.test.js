@@ -1,8 +1,5 @@
 import React from 'react';
 import { cleanup } from '@testing-library/react';
-// We're using our own custom render function and not RTL's render
-// our custom utils also re-export everything from RTL
-// so we can import fireEvent and screen here as well
 import { render } from '../test-utils';
 import MainContentCard from './MainContentCard';
 
@@ -31,7 +28,7 @@ const initialState = {
 };
 
 beforeAll(() => {
-  localStorage.setItem('lastGitHubApiCallUrl', 'https://api.github.com/search/repositories?q=node&client_id=3ff6e9bf539fc9c40c0f&client_secret=85625306aebc569d0a939d712a6da69f76a73a5f');
+  localStorage.setItem('lastGitHubApiCallUrl', JSON.stringify('https://api.github.com/search/repositories?q=node&client_id=3ff6e9bf539fc9c40c0f&client_secret=85625306aebc569d0a939d712a6da69f76a73a5f'));
 });
 
 afterEach(() => {

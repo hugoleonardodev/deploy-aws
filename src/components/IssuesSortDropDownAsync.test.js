@@ -1,17 +1,14 @@
 import React from 'react';
 import { cleanup } from '@testing-library/react';
-// We're using our own custom render function and not RTL's render
-// our custom utils also re-export everything from RTL
-// so we can import fireEvent and screen here as well
+
 import userEvent from '@testing-library/user-event';
 import { render, screen } from '../test-utils';
 import IssuesSortDropDown from './IssuesSortDropDown';
 import { hundredAndTenThousand } from '../mocks/groupButton';
 import repositories from '../mocks/repositories';
-// import repositories from '../mocks/repositories';
 
 beforeAll(() => {
-  localStorage.setItem('lastGitHubApiCallUrl', 'https://api.github.com/search/repositories?q=node&client_id=3ff6e9bf539fc9c40c0f&client_secret=85625306aebc569d0a939d712a6da69f76a73a5f');
+  localStorage.setItem('lastGitHubApiCallUrl', JSON.stringify('https://api.github.com/search/repositories?q=node&client_id=3ff6e9bf539fc9c40c0f&client_secret=85625306aebc569d0a939d712a6da69f76a73a5f'));
 });
 
 beforeEach(() => {
@@ -48,8 +45,6 @@ describe('IssuesSortDropDown component', () => {
 
     userEvent.click(pageFive[0]);
 
-    // expect(await screen.findByText(/7/i)).toBeInTheDocument();
-
     expect(mockedExchange).toHaveBeenCalled();
     expect(mockedExchange).toHaveBeenCalledTimes(1);
     expect(mockedExchange).toHaveBeenCalledWith('https://api.github.com/search/issues?q=node&sort=comments&page=1&client_id=3ff6e9bf539fc9c40c0f&client_secret=85625306aebc569d0a939d712a6da69f76a73a5f');
@@ -71,8 +66,6 @@ describe('IssuesSortDropDown component', () => {
     expect(pageFive.length).toBe(1);
 
     userEvent.click(pageFive[0]);
-
-    // expect(await screen.findByText(/7/i)).toBeInTheDocument();
 
     expect(mockedExchange).toHaveBeenCalled();
     expect(mockedExchange).toHaveBeenCalledTimes(1);
@@ -96,8 +89,6 @@ describe('IssuesSortDropDown component', () => {
 
     userEvent.click(pageFive[0]);
 
-    // expect(await screen.findByText(/7/i)).toBeInTheDocument();
-
     expect(mockedExchange).toHaveBeenCalled();
     expect(mockedExchange).toHaveBeenCalledTimes(1);
     expect(mockedExchange).toHaveBeenCalledWith('https://api.github.com/search/issues?q=node&sort=created&page=1&client_id=3ff6e9bf539fc9c40c0f&client_secret=85625306aebc569d0a939d712a6da69f76a73a5f');
@@ -119,8 +110,6 @@ describe('IssuesSortDropDown component', () => {
     expect(pageFive.length).toBe(1);
 
     userEvent.click(pageFive[0]);
-
-    // expect(await screen.findByText(/7/i)).toBeInTheDocument();
 
     expect(mockedExchange).toHaveBeenCalled();
     expect(mockedExchange).toHaveBeenCalledTimes(1);
@@ -144,8 +133,6 @@ describe('IssuesSortDropDown component', () => {
 
     userEvent.click(pageFive[0]);
 
-    // expect(await screen.findByText(/7/i)).toBeInTheDocument();
-
     expect(mockedExchange).toHaveBeenCalled();
     expect(mockedExchange).toHaveBeenCalledTimes(1);
     expect(mockedExchange).toHaveBeenCalledWith('https://api.github.com/search/issues?q=node&sort=updated&order=desc&client_id=3ff6e9bf539fc9c40c0f&client_secret=85625306aebc569d0a939d712a6da69f76a73a5f');
@@ -166,8 +153,6 @@ describe('IssuesSortDropDown component', () => {
     expect(pageFive.length).toBe(1);
 
     userEvent.click(pageFive[0]);
-
-    // expect(await screen.findByText(/7/i)).toBeInTheDocument();
 
     expect(mockedExchange).toHaveBeenCalled();
     expect(mockedExchange).toHaveBeenCalledTimes(1);

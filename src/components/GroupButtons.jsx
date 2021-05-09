@@ -1,4 +1,3 @@
-// import { Button } from 'bootstrap';
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -9,7 +8,6 @@ const TEN_MILLIONS = 10000000;
 const ONE_MILLION = 1000000;
 const ONE_HUNDRED_THOUSAND = 100000;
 const ONE_THOUSAND = 1000;
-// const ONE_HUNDRED = 100;
 const FIRST_THREE_NUMBERS = 3;
 const FIRST_TWO_NUMBERS = 2;
 
@@ -26,9 +24,6 @@ const setBadgeCount = (totalCount, setCount) => {
   if (totalCount > ONE_THOUSAND && totalCount < ONE_MILLION) {
     return setCount(`${totalCount.toString().substr(0, FIRST_TWO_NUMBERS)}K`);
   }
-  // if (totalCount > ONE_HUNDRED && totalCount < ONE_THOUSAND) {
-  //   return setCount(`${totalCount}K`);
-  // }
   return setCount(`${totalCount}`);
 };
 

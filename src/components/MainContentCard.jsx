@@ -18,9 +18,6 @@ const MainContentCard = ({ url, title, text, links, footer, isSelected,
   };
 
   const handleUrlTitleTrim = (urlTitle) => {
-    // if (urlTitle === undefined) {
-    //   return urlTitle;
-    // }
     const arr = urlTitle.split('/');
     const name = `${arr[arr.length - 2]}/${arr[arr.length - 1]}`;
     return name;
@@ -31,11 +28,17 @@ const MainContentCard = ({ url, title, text, links, footer, isSelected,
   return (
     <div>
       {isSelected ? (
-        <Card style={ { marginBottom: '20px' } }>
+        <Card
+          body
+          inverse
+          style={ {
+            backgroundColor: '#212529', borderColor: '#333', marginBottom: '20px' } }
+        >
           <CardBody>
             <CardTitle
               tag="h5"
               style={ { display: 'flex',
+                textDecoration: 'auto',
                 justifyContent: 'flex-start' } }
             >
               <img src={ repo } alt={ repo } />
@@ -54,7 +57,10 @@ const MainContentCard = ({ url, title, text, links, footer, isSelected,
               alignItems: 'baseline' } }
           >
             <CardText>
-              <a href={ stargazersUrl }>
+              <a
+                href={ stargazersUrl }
+                style={ { color: '#6c757d', textDecoration: 'auto' } }
+              >
                 <img src={ star } alt={ star } />
                 {stargazersCount}
               </a>
@@ -66,7 +72,10 @@ const MainContentCard = ({ url, title, text, links, footer, isSelected,
               {`Updated ${handleUpdatedDisplay(footer)}`}
             </CardText>
             <CardText>
-              <a href={ openIssuesCount }>
+              <a
+                href={ openIssuesCount }
+                style={ { color: '#6c757d', textDecoration: 'auto' } }
+              >
                 {`Issues need help ${openIssuesCount}`}
               </a>
             </CardText>
